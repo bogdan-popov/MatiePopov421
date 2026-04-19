@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MatiePopov421/MatiePopov421.csproj" />
+  <Project Path="MatiePopov421.Tests/MatiePopov421.Tests.csproj" />
+</Solution>

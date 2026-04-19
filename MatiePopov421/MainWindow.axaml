@@ -1,0 +1,208 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:MatiePopov421"
+        x:Class="MatiePopov421.MainWindow"
+        Title="Матье"
+        Width="1200" Height="680"
+        MinWidth="1200" MinHeight="680"
+        MaxWidth="1200" MaxHeight="680"
+        CanResize="False"
+        SystemDecorations="None"
+        WindowStartupLocation="CenterScreen"
+        Background="White">
+
+    <Border BorderBrush="#7C3AED" BorderThickness="2">
+        <Grid RowDefinitions="44,*">
+
+            <!-- Title bar -->
+            <Border Grid.Row="0" Background="#7C3AED" x:Name="titleBar">
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                    <Image Grid.Column="0" x:Name="titleLogoImage"
+                           Width="28" Height="28" Margin="10,0,8,0" Stretch="Uniform"/>
+                    <TextBlock Grid.Column="1" Text="Матье — Студия костюмов"
+                               Foreground="White" FontSize="14" FontWeight="Bold"
+                               VerticalAlignment="Center"/>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal">
+                        <Button x:Name="minimizeBtn" Content="Свернуть"
+                                Width="80" Height="44"
+                                Background="Transparent" Foreground="White"
+                                BorderThickness="0" FontSize="13"/>
+                        <Button x:Name="closeBtn" Content="Закрыть"
+                                Width="80" Height="44"
+                                Background="Transparent" Foreground="White"
+                                BorderThickness="0" FontSize="13"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Content -->
+            <Grid Grid.Row="1" ColumnDefinitions="170,*,200">
+
+                <!-- Left sidebar -->
+                <Border Grid.Column="0" Background="#6D28D9">
+                    <Grid RowDefinitions="Auto,*,Auto">
+
+                        <Border Grid.Row="0" Margin="12,16,12,10">
+                            <Border CornerRadius="8" Background="#7C3AED" Height="100">
+                                <Image x:Name="logoImage" Stretch="Uniform" Margin="8"/>
+                            </Border>
+                        </Border>
+
+                        <Grid Grid.Row="1"/>
+
+                        <StackPanel Grid.Row="2" Margin="10,0,10,16" Spacing="6">
+                            <Border Background="#7C3AED" CornerRadius="6" Padding="10,8">
+                                <StackPanel Spacing="3">
+                                    <TextBlock x:Name="userNameText"
+                                               Foreground="White" FontSize="12"
+                                               FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="userRoleText"
+                                               Foreground="#C4B5FD" FontSize="11"/>
+                                    <Border Background="#6D28D9" CornerRadius="4"
+                                            Padding="6,3" Margin="0,2,0,0"
+                                            HorizontalAlignment="Stretch">
+                                        <TextBlock x:Name="userBalanceText"
+                                                   Foreground="#A7F3D0" FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+                            <Button x:Name="addServiceBtn" Content="+ Добавить"
+                                    HorizontalAlignment="Stretch" Height="36"
+                                    Background="#A78BFA" Foreground="White"
+                                    BorderThickness="0" CornerRadius="6" FontSize="12"
+                                    FontWeight="SemiBold"/>
+                            <Button x:Name="exitBtn" Content="Выйти"
+                                    HorizontalAlignment="Stretch" Height="36"
+                                    Background="#F87171" Foreground="White"
+                                    BorderThickness="0" CornerRadius="6" FontSize="12"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Center: type tabs + list + pagination -->
+                <Grid Grid.Column="1" RowDefinitions="46,*,38" Background="#F5F3FF">
+
+                    <!-- Type toggle tabs -->
+                    <Border Grid.Row="0" Background="White"
+                            Margin="12,10,12,0"
+                            BorderBrush="#DDD6FE" BorderThickness="1,1,1,0"
+                            CornerRadius="8,8,0,0">
+                        <StackPanel Orientation="Horizontal" Spacing="0" Margin="10,7,10,0">
+                            <Button x:Name="tabKustomBtn"
+                                    Content="Кастом"
+                                    Height="32" MinWidth="80"
+                                    Background="#7C3AED" Foreground="White"
+                                    BorderThickness="1" BorderBrush="#7C3AED"
+                                    CornerRadius="6,6,0,0" FontSize="12" FontWeight="SemiBold"/>
+                            <Button x:Name="tabCosplayBtn"
+                                    Content="Косплей"
+                                    Height="32" MinWidth="80"
+                                    Background="#EDE9FE" Foreground="#5B21B6"
+                                    BorderThickness="1" BorderBrush="#DDD6FE"
+                                    CornerRadius="6,6,0,0" FontSize="12" Margin="6,0,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- List -->
+                    <Border Grid.Row="1" Background="White"
+                            Margin="12,0,12,0"
+                            BorderBrush="#DDD6FE" BorderThickness="1,0,1,0">
+                        <ListBox x:Name="servicesList"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type local:ServiceItem}">
+                                    <Border BorderBrush="#EDE9FE" BorderThickness="0,0,0,1"
+                                            Height="172" Background="White">
+                                        <Grid ColumnDefinitions="156,*" Margin="10,8,10,8">
+                                            <Border Grid.Column="0"
+                                                    BorderBrush="#DDD6FE" BorderThickness="1"
+                                                    CornerRadius="6" ClipToBounds="True">
+                                                <Image Source="{Binding Photo}" Stretch="UniformToFill"/>
+                                            </Border>
+                                            <StackPanel Grid.Column="1" Margin="14,4,6,4"
+                                                        VerticalAlignment="Center" Spacing="5">
+                                                <TextBlock Text="{Binding Title}"
+                                                           FontSize="14" FontWeight="SemiBold"
+                                                           Foreground="#4C1D95" TextWrapping="Wrap"/>
+                                                <TextBlock Text="{Binding Description}"
+                                                           FontSize="12" Foreground="#6B7280"
+                                                           TextWrapping="Wrap" MaxLines="4"/>
+                                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                                    <Border Background="#EDE9FE" CornerRadius="4"
+                                                            Padding="6,2">
+                                                        <TextBlock Text="{Binding LastModifiedFormatted}"
+                                                                   FontSize="10" Foreground="#7C3AED"/>
+                                                    </Border>
+                                                    <Border Background="#F0FDF4" CornerRadius="4"
+                                                            Padding="6,2">
+                                                        <TextBlock Text="{Binding PriceFormatted}"
+                                                                   FontSize="10" Foreground="#16A34A"
+                                                                   FontWeight="SemiBold"/>
+                                                    </Border>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Border>
+
+                    <Border Grid.Row="2" Margin="12,0,12,6"
+                            Background="White" CornerRadius="0,0,8,8"
+                            BorderBrush="#DDD6FE" BorderThickness="1,0,1,1">
+                        <TextBlock x:Name="pageInfoText"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,14,0"
+                                   FontSize="12" Foreground="#7C3AED"
+                                   FontWeight="SemiBold" Text="0–0 из 0"/>
+                    </Border>
+                </Grid>
+
+                <!-- Right sidebar -->
+                <Border Grid.Column="2" Background="#F5F3FF"
+                        BorderBrush="#DDD6FE" BorderThickness="1,0,0,0">
+                    <StackPanel Margin="10,14,10,14" Spacing="8">
+
+                        <TextBlock Text="Поиск" FontSize="11"
+                                   Foreground="#6D28D9" FontWeight="SemiBold"/>
+                        <TextBox x:Name="searchBox" Height="34"
+                                 Watermark="Название услуги..." CornerRadius="6"/>
+
+                        <TextBlock Text="Сортировка" FontSize="11"
+                                   Foreground="#6D28D9" FontWeight="SemiBold"
+                                   Margin="0,4,0,0"/>
+                        <ComboBox x:Name="sortCombo" HorizontalAlignment="Stretch" Height="34">
+                            <ComboBoxItem Content="А — Я"/>
+                            <ComboBoxItem Content="Я — А"/>
+                        </ComboBox>
+
+                        <TextBlock Text="Коллекция" FontSize="11"
+                                   Foreground="#6D28D9" FontWeight="SemiBold"
+                                   Margin="0,4,0,0"/>
+                        <ComboBox x:Name="collectionCombo"
+                                  HorizontalAlignment="Stretch" Height="34"/>
+
+                        <TextBlock Text="Страница" FontSize="11"
+                                   Foreground="#6D28D9" FontWeight="SemiBold"
+                                   Margin="0,8,0,0"/>
+                        <Grid ColumnDefinitions="*,8,*">
+                            <Button Grid.Column="0" x:Name="prevBtn" Content="◀"
+                                    Height="40" Width="80" Background="#7C3AED" Foreground="White"
+                                    BorderThickness="0" CornerRadius="6" FontSize="14"/>
+                            <Button Grid.Column="2" x:Name="nextBtn" Content="▶"
+                                    Height="40" Width="80" Background="#7C3AED" Foreground="White"
+                                    BorderThickness="0" CornerRadius="6" FontSize="14"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

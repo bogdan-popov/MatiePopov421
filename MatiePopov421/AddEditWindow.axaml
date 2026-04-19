@@ -1,0 +1,136 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MatiePopov421.AddEditWindow"
+        Title="Услуга"
+        Width="680" Height="500"
+        CanResize="False"
+        SystemDecorations="None"
+        WindowStartupLocation="CenterOwner"
+        Background="White">
+
+    <Border BorderBrush="#7C3AED" BorderThickness="2">
+        <Grid RowDefinitions="44,*">
+
+            <!-- Title bar -->
+            <Border Grid.Row="0" Background="#7C3AED" x:Name="titleBarAdd">
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                    <Image Grid.Column="0" x:Name="titleLogoAdd"
+                           Width="26" Height="26" Margin="10,0,8,0" Stretch="Uniform"/>
+                    <TextBlock Grid.Column="1" x:Name="windowTitleText"
+                               Text="Добавить услугу"
+                               Foreground="White" FontSize="14" FontWeight="Bold"
+                               VerticalAlignment="Center"/>
+                    <Button Grid.Column="2" x:Name="cancelBtn"
+                            Content="✕" Width="44" Height="44"
+                            Background="Transparent" Foreground="White"
+                            BorderThickness="0" FontSize="14"/>
+                </Grid>
+            </Border>
+
+            <!-- Содержимое: левая колонка (фото) + правая (поля) + кнопки снизу -->
+            <Grid Grid.Row="1" Margin="20,16,20,18"
+                  RowDefinitions="*,14,Auto"
+                  ColumnDefinitions="200,16,*">
+
+                <!-- ЛЕВАЯ КОЛОНКА: выбор файла + превью -->
+                <Grid Grid.Row="0" Grid.Column="0"
+                      RowDefinitions="Auto,10,*">
+
+                    <!-- Выбор файла -->
+                    <Grid Grid.Row="0" RowDefinitions="Auto,6,Auto">
+                        <TextBlock Grid.Row="0" Text="Фото:"
+                                   Foreground="#4C1D95" FontWeight="SemiBold"
+                                   FontSize="12"/>
+                        <Grid Grid.Row="2" ColumnDefinitions="*,6,Auto">
+                            <TextBox Grid.Column="0" x:Name="imagePathBox"
+                                     Height="32" CornerRadius="6" Padding="8,0"
+                                     IsReadOnly="True" FontSize="11"
+                                     Watermark="Файл не выбран"/>
+                            <Button Grid.Column="2" x:Name="browseBtn"
+                                    Content="…" Height="32" Width="36"
+                                    Background="#7C3AED" Foreground="White"
+                                    BorderThickness="0" CornerRadius="6"
+                                    FontSize="14"/>
+                        </Grid>
+                    </Grid>
+
+                    <!-- Превью — заполняет всю оставшуюся высоту -->
+                    <Border Grid.Row="2"
+                            BorderBrush="#DDD6FE" BorderThickness="1"
+                            CornerRadius="6" ClipToBounds="True"
+                            Background="#F9F7FF">
+                        <Grid>
+                            <Image x:Name="previewImage" Stretch="Uniform"/>
+                            <TextBlock x:Name="previewPlaceholder"
+                                       Text="Изображение&#10;не выбрано"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       Foreground="#9CA3AF" FontSize="12"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <!-- ПРАВАЯ КОЛОНКА: поля формы -->
+                <Grid Grid.Row="0" Grid.Column="2"
+                      RowDefinitions="Auto,Auto,10,Auto,Auto,10,Auto,Auto,10,Auto,Auto,10,Auto,Auto,*">
+
+                    <!-- Название -->
+                    <TextBlock Grid.Row="0" Text="Название:"
+                               Foreground="#4C1D95" FontWeight="SemiBold" FontSize="12"
+                               Margin="0,0,0,4"/>
+                    <TextBox Grid.Row="1" x:Name="titleBox"
+                             Height="32" CornerRadius="6" Padding="10,0"/>
+
+                    <!-- Описание -->
+                    <TextBlock Grid.Row="3" Text="Описание:"
+                               Foreground="#4C1D95" FontWeight="SemiBold" FontSize="12"
+                               Margin="0,0,0,4"/>
+                    <TextBox Grid.Row="4" x:Name="descriptionBox"
+                             Height="90" TextWrapping="Wrap"
+                             AcceptsReturn="True" CornerRadius="6" Padding="10,6"/>
+
+                    <!-- Цена -->
+                    <TextBlock Grid.Row="6" Text="Цена (₽):"
+                               Foreground="#4C1D95" FontWeight="SemiBold" FontSize="12"
+                               Margin="0,0,0,4"/>
+                    <TextBox Grid.Row="7" x:Name="priceBox"
+                             Height="32" CornerRadius="6" Padding="10,0"
+                             Watermark="0"/>
+
+                    <!-- Коллекция -->
+                    <TextBlock Grid.Row="9" Text="Коллекция:"
+                               Foreground="#4C1D95" FontWeight="SemiBold" FontSize="12"
+                               Margin="0,0,0,4"/>
+                    <ComboBox Grid.Row="10" x:Name="collectionCombo"
+                              HorizontalAlignment="Stretch" Height="32"/>
+
+                    <!-- Тип услуги -->
+                    <TextBlock Grid.Row="12" Text="Тип услуги:"
+                               Foreground="#4C1D95" FontWeight="SemiBold" FontSize="12"
+                               Margin="0,0,0,4"/>
+                    <ComboBox Grid.Row="13" x:Name="typeCombo"
+                              HorizontalAlignment="Stretch" Height="32"/>
+                </Grid>
+
+                <!-- КНОПКИ — нижняя строка, обе колонки -->
+                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                      ColumnDefinitions="*,16,*">
+                    <Button Grid.Column="0" x:Name="cancelFormBtn"
+                            Content="Отмена" Height="38"
+                            HorizontalAlignment="Stretch"
+                            Background="#EDE9FE" Foreground="#5B21B6"
+                            BorderThickness="1" BorderBrush="#DDD6FE"
+                            CornerRadius="6"/>
+                    <Button Grid.Column="2" x:Name="saveBtn"
+                            Content="Сохранить" Height="38"
+                            HorizontalAlignment="Stretch"
+                            Background="#7C3AED" Foreground="White"
+                            BorderThickness="0" CornerRadius="6"
+                            FontWeight="SemiBold"/>
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </Border>
+</Window>
